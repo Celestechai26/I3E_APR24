@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpeedCollectible : Collectable
+{
+    public float speedIncrease = 2.0f;
+
+    public override void CollectableCollected()
+    {
+        // Access the player's first person controller and increase the movement speed
+        GameObject player = GameObject.FindWithTag("Player");
+        StarterAssets.FirstPersonController controller = player.GetComponent<StarterAssets.FirstPersonController>();
+        if (controller != null)
+        {
+            controller.MoveSpeed += speedIncrease;
+            Debug.Log("Player's movement speed increased");
+        }
+        else
+        {
+            Debug.LogWarning("FirstPersonController component not found on the player");
+        }
+    }
+}
